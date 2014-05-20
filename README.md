@@ -50,6 +50,14 @@ There we have 2 samples:
 
 
 # HOW TO USE IT
+##QUICK GUIDE
+If you want to quickly test MASTERS, you can use the following step by step:
+1. First of all you need to  fill the Fasta-Seq field with a sequence of your interest. Remember that the Netlogo's world size must support the size of your target. (You can change the world size right-clicking the 3-D view)
+1. Click the Startup button (or press Q)
+2. Click the Load Fasta Seq into View (or press A)
+3. Click the Create director and environment agents button (or press S)
+4. Click the Environment Agent - Go button (or press D). For fast simulations it is advisable to unmark the "view uptdates" option at the 3D View window.
+
 ## SETUP COMMANDS
 
 ###title
