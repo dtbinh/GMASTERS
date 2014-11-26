@@ -1080,12 +1080,36 @@ end
 
 
 ;;buttons 
-to button_1
-;PUT HERE
-end
+to button_startup
+Startup
+set potentials []
+;resize-world ((length Fasta-Seq) * -4) ((length Fasta-Seq) * 4) ((length Fasta-Seq) * -1.5) ((length Fasta-Seq) * 1.5) ((length Fasta-Seq) * -1.5) ((length Fasta-Seq) * 1.5)
+
+set lower_energy 999999999999
+set lower_energy_tick "no one"
+  end
 
 to button_2
-  ;PUTHERE
+  
+    set last-Ca 777
+  reset-ticks
+  set-default-shape searchings "circle" 
+  default-bonds
+  set-fasta-sequence-data Fasta-Seq
+  create-chain
+  
+  set nonbond_energys []  
+    set bond_energys []
+  ask searchings [
+    set bond_energys lput 0.0 bond_energys]
+  
+  
+  paint
+  ask turtles [set size searching-size ]
+  set temperature 10
+  user-message "Fasta Sequence has been loaded successfully!"
+  
+  create_pdb_from_simulation "testeeeeeeeeeeeeeeeee.pdb"
   
 end
 
@@ -1108,7 +1132,7 @@ set finish 1
 end
 
 to run_masters
-button_1
+button_startup
 button_2
 button_3
 button_4
@@ -1376,7 +1400,7 @@ INPUTBOX
 593
 114
 Fasta-Seq
-GVPINVSCTGSPQCIKPCKDQGMRFGKCMNRKCHCTPK
+GLPPPPP
 1
 0
 String
@@ -1597,7 +1621,7 @@ INPUTBOX
 1410
 160
 temperature
-0
+10
 1
 0
 Number
@@ -2960,7 +2984,7 @@ Polygon -7500403 true true 270 75 225 30 30 225 75 270
 Polygon -7500403 true true 30 75 75 30 270 225 225 270
 
 @#$#@#$#@
-NetLogo 3D 5.0.4
+NetLogo 3D 5.0.5
 @#$#@#$#@
 @#$#@#$#@
 @#$#@#$#@
@@ -3031,9 +3055,9 @@ NetLogo 3D 5.0.4
 @#$#@#$#@
 default
 0.0
--0.2 0 1.0 0.0
+-0.2 0 0.0 1.0
 0.0 1 1.0 0.0
-0.2 0 1.0 0.0
+0.2 0 0.0 1.0
 link direction
 true
 0
