@@ -1090,8 +1090,7 @@ set lower_energy_tick "no one"
   end
 
 to button_2
-  
-    set last-Ca 777
+  set last-Ca 777
   reset-ticks
   set-default-shape searchings "circle" 
   default-bonds
@@ -1107,10 +1106,7 @@ to button_2
   paint
   ask turtles [set size searching-size ]
   set temperature 10
-  user-message "Fasta Sequence has been loaded successfully!"
-  
-  create_pdb_from_simulation "testeeeeeeeeeeeeeeeee.pdb"
-  
+;  user-message "Fasta Sequence has been loaded successfully!"
 end
 
 
@@ -1151,6 +1147,29 @@ end
 
 to-report elapsed
 report timer
+end
+
+to-report vc [AMINOACIDO]
+  if AMINOACIDO = "GLY" [report "G"]
+  if AMINOACIDO = "ALA" [report "A"]
+  if AMINOACIDO = "VAL" [report "V"]
+  if AMINOACIDO = "LEU" [report "L"]
+  if AMINOACIDO = "ILE" [report "I"]
+  if AMINOACIDO = "CYS" [report "C"]
+  if AMINOACIDO = "MET" [report "M"]
+  if AMINOACIDO = "PHE" [report "F"]
+  if AMINOACIDO = "PRO" [report "P"]
+  if AMINOACIDO = "TYR" [report "Y"]
+  if AMINOACIDO = "HIS" [report "H"]
+  if AMINOACIDO = "TRP" [report "W"]
+  if AMINOACIDO = "SER" [report "S"]
+  if AMINOACIDO = "THR" [report "T"]
+  if AMINOACIDO = "LYS" [report "K"]
+  if AMINOACIDO = "ARG" [report "R"]
+  if AMINOACIDO = "ASP" [report "D"]
+  if AMINOACIDO = "ASN" [report "N"]
+  if AMINOACIDO = "GLU" [report "E"]
+  if AMINOACIDO = "GLN" [report "Q"]
 end
 
 to create_pdb_from_simulation [output-file]
@@ -1249,7 +1268,104 @@ set #string substring #string (next-pos + w) (length #string)
 end
 
 
+to load_pdb [arquivo]
+Startup
+let content []
+let start-atoms -1
+let found-start-atoms 0
+let Seq_aux ""
+let coords_ca []
+let stop_ 0
+;let coords_aux
+ifelse ( file-exists? arquivo )
+  [
+    ;; We are saving the data into a list, so it only needs to be loaded once.
+    
+    ;; This opens the file, so we can use it.
+    ;set file (word "inputs/" file)
+    file-open arquivo
+    
+    ;; Read in all the data in the file
+    while [ not file-at-end? ]
+    [
+         
+      ;; file-read gives you variables.  In this case numbers.
+      ;; We store them in a double list (ex [[1 1 9.9999] [1 2 9.9999] ...
+      ;; Each iteration we append the next three-tuple to the current list
+      set content sentence content file-read-line
+    ]
+  ][]
 
+let line-number 0
+foreach content [
+  ifelse (found-start-atoms != 1)[if ((item 0 ?) = "A")[set start-atoms line-number set found-start-atoms 1 set line-number line-number - 1]]
+  [
+  ifelse ( ((item 0 (item (line-number) content)) != "A")) [show "DIF A" set stop_ 1]
+    [
+  let aminoacid (word (item 17 (item (line-number) content)) (item 18 (item (line-number) content)) (item 19 (item (line-number) content)))
+  ;show aminoacid
+
+ ifelse (stop_ = 1)[] [
+   
+   
+   
+  ifelse ((item 13 (item (line-number) content)) != "C") [][
+    ifelse ((item 14 (item (line-number) content)) = "A") [
+  set Seq_aux word Seq_aux (vc aminoacid) 
+   
+   
+; show "x_coor:"
+ set coords_ca lput read-from-string (word (item 30 (item (line-number) content)) (item 31 (item (line-number) content)) (item 32 (item (line-number) content)) (item 33 (item (line-number) content))  
+   (item 34 (item (line-number) content)) (item 35 (item (line-number) content)) (item 36 (item (line-number) content))
+   (item 37 (item (line-number) content)) 
+           ) coords_ca
+ 
+ 
+ ;show "y_coor:"
+ set coords_ca lput read-from-string (word (item 39 (item (line-number) content)) (item 40 (item (line-number) content)) (item 41 (item (line-number) content)) (item 42 (item (line-number) content))  
+   (item 43 (item (line-number) content)) (item 44 (item (line-number) content)) (item 45 (item (line-number) content))
+   (item 46 (item (line-number) content))
+           ) coords_ca
+ 
+ ;show "z_coor:"
+  set coords_ca lput read-from-string (word (item 47 (item (line-number) content)) (item 48 (item (line-number) content)) (item 49 (item (line-number) content)) (item 50 (item (line-number) content))  
+   (item 51 (item (line-number) content)) (item 52 (item (line-number) content)) (item 53 (item (line-number) content))
+   (item 54 (item (line-number) content))
+           ) coords_ca
+  
+ ][]]
+ ]  
+   
+   ]
+  ] 
+set line-number (line-number + 1)
+]
+
+;show coords_ca
+show "Pdb Loaded!"
+file-close 
+
+
+
+;show Seq_aux
+set Fasta-Seq Seq_aux
+;resize-world ((length Fasta-Seq) * -4) ((length Fasta-Seq) * 4) ((length Fasta-Seq) * -1.5) ((length Fasta-Seq) * 1.5) ((length Fasta-Seq) * -1.5) ((length Fasta-Seq) * 1.5)
+button_2 ;lembrando que o button_2 seta a temperatura em 10, atualmente
+paint
+
+
+let id 0
+while [id < nr-of-aminos] [  
+show id
+ask searching id [
+  setxyz (item 0 coords_ca) (item 1 coords_ca) (item 2 coords_ca)
+  ]
+set id id + 1
+ set coords_ca but-first coords_ca 
+ set coords_ca but-first coords_ca
+ set coords_ca but-first coords_ca  
+]
+end
 
 to load-parameters
 set (director-sleep-time) read-from-string (item 0 (split parameters "-"))
