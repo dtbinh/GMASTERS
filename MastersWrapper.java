@@ -3,6 +3,16 @@ import org.nlogo.headless.HeadlessWorkspace;
 public class MastersWrapper {
   public static void main(String[] argv) {
     HeadlessWorkspace workspace = HeadlessWorkspace.newInstance() ;
+    String[] reporters = {
+        "ask_energy",
+        "ask_energy_tick",
+        "ask_best_energia",
+        "elapsed",
+        "array_x",
+        "array_y",
+        "array_z",
+        "potentials"
+    };
     try {
       workspace.open("Masters_vBETA.nlogo3d");
       // Set random seed for reproducible experiments
@@ -14,10 +24,10 @@ public class MastersWrapper {
       // Runs the simulation
       workspace.command("run_masters");
 
-      // Print reporters
-      System.out.println(workspace.report("ask_energy"));
-      System.out.println(workspace.report("ask_energy_tick"));
-      System.out.println(workspace.report("ask_best_energia"));
+      for (String reporter : reporters) {
+          System.out.println(reporter + ": " + workspace.report(reporter));
+      }
+
       workspace.dispose();
     }
     catch(Exception ex) {
