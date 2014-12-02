@@ -24,6 +24,7 @@ public class MastersWrapper {
       // Runs the simulation
       workspace.command("run_masters");
 
+      System.out.println("\n=== Reporters ===");
       for (String reporter : reporters) {
           System.out.println(reporter + ": " + workspace.report(reporter));
       }
