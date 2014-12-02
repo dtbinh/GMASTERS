@@ -13,36 +13,37 @@ public class MastersWrapper {
             System.out.println("usage: ./run_masters_headless <parameters_file>");
         } else {
             HeadlessWorkspace workspace = HeadlessWorkspace.newInstance() ;
-            String[] reporters = {
-                "ask_energy",
-                "ask_energy_tick",
-                "ask_best_energia",
-                "elapsed",
-                "array_x",
-                "array_y",
-                "array_z",
-                "potentials"
-            };
-            try {
+                  try {
                 workspace.open("Masters_vBETA.nlogo3d");
                 // Set random seed for reproducible experiments
                 workspace.command("random-seed 0");
                 // Clear all
                 workspace.command("ca");
-
                 setSimulationParameters(workspace, argv[0]);
                 workspace.command("run_masters");
-
-                System.out.println("\n=== Reporters ===");
-                for (String reporter : reporters) {
-                    System.out.println(reporter + ": " + workspace.report(reporter));
-                }
-
+                printReporters(workspace);
                 workspace.dispose();
             }
             catch(Exception ex) {
                 ex.printStackTrace();
             }
+        }
+    }
+
+    public static void printReporters(HeadlessWorkspace workspace) throws Exception{
+        String[] reporters = {
+            "ask_energy",
+            "ask_energy_tick",
+            "ask_best_energia",
+            "elapsed",
+            "array_x",
+            "array_y",
+            "array_z",
+            "potentials"
+        };
+        System.out.println("\n=== Reporters ===");
+        for (String reporter : reporters) {
+            System.out.println(reporter + ": " + workspace.report(reporter));
         }
     }
 
