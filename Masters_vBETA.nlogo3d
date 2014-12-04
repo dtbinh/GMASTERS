@@ -1089,7 +1089,7 @@ to button_startup
     set lower_energy_tick "no one"
 end
 
-to button_load_fasta_seq
+to button_load_fasta_seq_backup ;; LEMBRANDO QUE ESSE BOTAO É CHAMADO PELA FUNCAO LOAD_PDB, chamada dentro do novo botao button_load_fasta_seq
   set last-Ca 777
   reset-ticks
   set-default-shape searchings "circle" 
@@ -1099,14 +1099,16 @@ to button_load_fasta_seq
   
   set nonbond_energys []  
     set bond_energys []
-  ask searchings [
-    set bond_energys lput 0.0 bond_energys]
-  
+  ask searchings [ set bond_energys lput 0.0 bond_energys]
   
   paint
   ask turtles [set size searching-size ]
   set temperature 10
 ;  user-message "Fasta Sequence has been loaded successfully!"
+end
+
+to button_load_fasta_seq ;;vou carregar um pdb no inicio do programa - depois dá pra mudar nome desse "botao" 
+  load_pdb "MastersInput.pdb"
 end
 
 
@@ -1116,7 +1118,7 @@ to button_create_agents
     create-environment_agents 1 [hide-turtle  ]
 
     ;;;;;;;;;; LETS PUT THE TURTLES IN THE MIDDLE OF THE SCREEN!;;;;;;;;;;;
-    ask turtles [ set xcor xcor - 62]
+   ; ask turtles [ set xcor xcor - 62]
     ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
     user-message "Environment created!"
@@ -1127,7 +1129,6 @@ to button_create_agents
     set lower_energy_tick ticks
 
 
-    ask turtles [ set xcor xcor - 10]
     reset-timer
 end
 
@@ -1184,7 +1185,9 @@ to button_environment_agent_go
         set temp_factor_search fator_temp_orch_antigo * (1); ^ ticks) ; 0.95
 
         set potentials lput current_energy potentials
-        create_pdb_from_simulation (word title "." ticks “.pdb”)
+        
+        ;;TESTANdo CABRA SAFADO LARAZENTO QUE DÁ ERRO. ERRO na funcao create_pdb_from_sim
+        create_pdb_from_simulation (word title "." ticks ".pdb")
         tick
         if (temperature = 0.0) [ 
 
@@ -1202,7 +1205,7 @@ to button_environment_agent_go
 
          ; only available in gui
          ;export-interface (word (word date-and-time (word "ftaa" temp_factor_search)) (word word (word "fto" word temp_factor_search (word "orchsleep" word director-sleep-time word "nod" nr-of-directors)) (word "limitar_prob_orch" limit_prob_dir)  (word ((word "limitar_prob_aa" limit_prob_search))".jpg") ))
-        create_pdb_from_simulation (word title "." ticks "last” “.pdb”)
+        create_pdb_from_simulation (word title "." ticks "last" ".pdb")
          user-message "Outputs generated!"
          
 
@@ -1214,6 +1217,7 @@ to button_environment_agent_go
 
          ; only available in gui
         ; export-interface (word (word date-and-time (word "ftaa" temp_factor_search)) (word word (word "fto" word temp_factor_search (word "orchsleep" word director-sleep-time word "nod" nr-of-directors)) (word "limitar_prob_orch" limit_prob_dir)  (word ((word "limitar_prob_aa" limit_prob_search))".jpg") ))
+        create_pdb_from_simulation (word title "." ticks "last" ".pdb")
         create_pdb_from_simulation date-and-time 
          user-message "Outputs generated!"
 
@@ -1306,7 +1310,7 @@ to create_pdb_from_simulation [output-file]
      
      set ini position "." (word precision ycor 3)
      set end_ length(word precision ycor 3)
-     
+     ;show id
      if( length( substring (word precision ycor 3) ini end_) < 4) [file-type " "]
      
      if(zcor > 0)[file-type " "] ifelse(zcor < 10)[file-type "  "][ifelse(zcor < 100.0)[file-type " "][file-type ""]] file-type precision zcor 3
@@ -1364,7 +1368,6 @@ end
 
 
 to load_pdb [arquivo]
-Startup
 let content []
 let start-atoms -1
 let found-start-atoms 0
@@ -1436,7 +1439,7 @@ foreach content [
 set line-number (line-number + 1)
 ]
 
-;show coords_ca
+show coords_ca
 show "Pdb Loaded!"
 file-close 
 
@@ -1445,7 +1448,7 @@ file-close
 ;show Seq_aux
 set Fasta-Seq Seq_aux
 ;resize-world ((length Fasta-Seq) * -4) ((length Fasta-Seq) * 4) ((length Fasta-Seq) * -1.5) ((length Fasta-Seq) * 1.5) ((length Fasta-Seq) * -1.5) ((length Fasta-Seq) * 1.5)
-button_load_fasta_seq;lembrando que o button_2 seta a temperatura em 10, atualmente
+button_load_fasta_seq_backup;lembrando que o button_2 seta a temperatura em 10, atualmente
 paint
 
 
@@ -1611,7 +1614,7 @@ INPUTBOX
 593
 114
 Fasta-Seq
-GVPINVSCTGSPQCIKPCKDQGMRFGKCMNRKCHCTPK
+LLLLSLSLSLSLSLLSLLSSSLLSSLSLLSSSLSLSLS
 1
 0
 String
@@ -1832,7 +1835,7 @@ INPUTBOX
 1410
 160
 temperature
-10
+9.604000000000001
 1
 0
 Number
