@@ -1,48 +1,78 @@
-1AGTREMARK  ENERGY: -51.242
-REMARK  director-sleep-time: 5
-REMARK  temp_factor_dir: 0.5
-REMARK  temp_factor_search: 0.5
-REMARK  nr-of-directors: 1
-REMARK  limit_prob_dir: 1
-REMARK  limit_prob_search: 1
-REMARK  attempted_threshold_with_dir: 500
-ATOM      0  CA  LEU     1     -12.955  -7.015  -10.861  1.00  1.00           B
-ATOM      1  CA  LEU     2     -12.341  -6.591  -10.195  1.00  1.00           B
-ATOM      2  CA  LEU     3     -12.726  -6.706  -9.28    1.00  1.00           B
-ATOM      3  CA  LEU     4     -13.449  -6.599  -9.962   1.00  1.00           C
-ATOM      4  CA  SER     5     -14.242  -6.062  -9.677   1.00  1.00           C
-ATOM      5  CA  LEU     6     -13.471  -5.935  -9.053   1.00  1.00           C
-ATOM      6  CA  SER     7     -13.437  -5.055  -9.527   1.00  1.00           C
-ATOM      7  CA  LEU     8     -12.681  -5.668  -9.758   1.00  1.00           C
-ATOM      8  CA  SER     9     -12.437  -4.916  -10.37   1.00  1.00           C
-ATOM      9  CA  LEU    10     -11.937  -5.728  -10.674  1.00  1.00           C
-ATOM     10  CA  SER    11     -10.94   -5.766  -10.738  1.00  1.00           C
-ATOM     11  CA  LEU    12     -11.306  -6.644  -10.427  1.00  1.00           C
-ATOM     12  CA  SER    13     -10.821  -7.266  -9.813   1.00  1.00           C
-ATOM     13  CA  LEU    14     -11.806  -7.339  -9.659   1.00  1.00           C
-ATOM     14  CA  LEU    15     -12.741  -7.59   -9.91    1.00  1.00           C
-ATOM     15  CA  SER    16     -13.483  -8.246  -9.772   1.00  1.00           C
-ATOM     16  CA  LEU    17     -13.547  -7.431  -9.196   1.00  1.00           C
-ATOM     17  CA  LEU    18     -13.216  -6.958  -8.38    1.00  1.00           C
-ATOM     18  CA  SER    19     -13.142  -6.742  -7.407   1.00  1.00           C
-ATOM     19  CA  SER    20     -12.636  -6.048  -6.894   1.00  1.00           C
-ATOM     20  CA  SER    21     -12.599  -5.523  -7.745   1.00  1.00           C
-ATOM     21  CA  LEU    22     -12.384  -5.866  -8.658   1.00  1.00           C
-ATOM     22  CA  LEU    23     -11.73   -6.1   -9.379    1.00  1.00           C
-ATOM     23  CA  SER    24     -11.068  -5.367  -9.534   1.00  1.00           C
-ATOM     24  CA  SER    25     -10.654  -5.339  -8.625   1.00  1.00           C
-ATOM     25  CA  LEU    26     -11.297  -6.052  -8.346   1.00  1.00           C
-ATOM     26  CA  SER    27     -11.71   -6.648  -7.658   1.00  1.00           C
-ATOM     27  CA  LEU    28     -11.958  -6.954  -8.577   1.00  1.00           C
-ATOM     28  CA  LEU    29     -12.499  -7.748  -8.856   1.00  1.00           C
-ATOM     29  CA  SER    30     -12.827  -8.668  -8.643   1.00  1.00           C
-ATOM     30  CA  SER    31     -13.289  -9.418  -9.117   1.00  1.00           C
-ATOM     31  CA  SER    32     -12.561  -9.219  -9.773   1.00  1.00           C
-ATOM     32  CA  LEU    33     -12.02   -8.394  -9.937   1.00  1.00           C
-ATOM     33  CA  SER    34     -11.812  -8.518  -10.907  1.00  1.00           C
-ATOM     34  CA  LEU    35     -11.964  -7.545  -10.736  1.00  1.00           C
-ATOM     35  CA  SER    36     -11.681  -7.506  -11.694  1.00  1.00           C
-ATOM     36  CA  LEU    37     -12.008  -6.631  -11.338  1.00  1.00           C
-ATOM     37  CA  SER    38     -11.77   -6.381  -12.277  1.00  1.00           C
--12.955 -7.015 -10.861 -12.341 -6.591 -10.195 -12.726 -6.706 -9.28 -13.449 -6.599 -9.962 -14.242 -6.062 -9.677 -13.471 -5.935 -9.053 -13.437 -5.055 -9.527 -12.681 -5.668 -9.758 -12.437 -4.916 -10.37 -11.937 -5.728 -10.674 -10.94 -5.766 -10.738 -11.306 -6.644 -10.427 -10.821 -7.266 -9.813 -11.806 -7.339 -9.659 -12.741 -7.59 -9.91 -13.483 -8.246 -9.772 -13.547 -7.431 -9.196 -13.216 -6.958 -8.38 -13.142 -6.742 -7.407 -12.636 -6.048 -6.894 -12.599 -5.523 -7.745 -12.384 -5.866 -8.658 -11.73 -6.1 -9.379 -11.068 -5.367 -9.534 -10.654 -5.339 -8.625 -11.297 -6.052 -8.346 -11.71 -6.648 -7.658 -11.958 -6.954 -8.577 -12.499 -7.748 -8.856 -12.827 -8.668 -8.643 -13.289 -9.418 -9.117 -12.561 -9.219 -9.773 -12.02 -8.394 -9.937 -11.812 -8.518 -10.907 -11.964 -7.545 -10.736 -11.681 -7.506 -11.694 -12.008 -6.631 -11.338]
-observer: "Pdb Loaded!"
+REMARK      - - MASTERS PROJECT FILE - - 
+REMARK
+REMARK  GENERATED:    Thu Dec  4 16:22:01 2014
+REMARK  PROJECT_NAME: sequencia do Magrão
+REMARK  USER:         Magrão
+REMARK
+REMARK
+REMARK     - - protein ABsequence - - 
+REMARK  ABSEQUEN:  GVPINVSCTGSPQCIKPCKDQGMRFGKCMNRKCHCTPK
+REMARK
+REMARK
+REMARK     - - AB model - - 
+REMARK  ABMODEL  A:['Ala', 'HID', 'A']
+REMARK  ABMODEL  C:['Cys', 'HID', 'A']
+REMARK  ABMODEL  E:['Glu', 'POL', 'B']
+REMARK  ABMODEL  D:['Asp', 'POL', 'B']
+REMARK  ABMODEL  G:['Gly', 'HID', 'A']
+REMARK  ABMODEL  F:['Phe', 'POL', 'B']
+REMARK  ABMODEL  I:['Ile', 'HID', 'A']
+REMARK  ABMODEL  H:['His', 'POL', 'B']
+REMARK  ABMODEL  K:['Lys', 'POL', 'B']
+REMARK  ABMODEL  M:['Met', 'HID', 'A']
+REMARK  ABMODEL  L:['Leu', 'HID', 'A']
+REMARK  ABMODEL  N:['Asn', 'POL', 'B']
+REMARK  ABMODEL  Q:['Gln', 'POL', 'B']
+REMARK  ABMODEL  P:['Pro', 'HID', 'A']
+REMARK  ABMODEL  S:['Ser', 'POL', 'B']
+REMARK  ABMODEL  R:['Arg', 'POL', 'B']
+REMARK  ABMODEL  T:['Thr', 'POL', 'B']
+REMARK  ABMODEL  W:['Trp', 'POL', 'B']
+REMARK  ABMODEL  V:['Val', 'HID', 'A']
+REMARK  ABMODEL  Y:['Tyr', 'POL', 'B']
+REMARK
+REMARK     - - protein ABsequence - - 
+REMARK  ABSEQUEN:  AAAABABABABABAABAABBBAABBABAABBBABABAB
+REMARK
+REMARK          - -   - -   - - CELL MODEL - -   - -   - -
+REMARK           -X       +X       -Y       +Y       -Z       +Z
+REMARK  CELL  -26.000   26.000  -20.000   20.000  -20.000   20.000
+REMARK
+ATOM      0  CA  GLY     1     -19.000   0.000   0.000  0.00  0.00           C  
+ATOM      1  CA  VAL     2     -18.000   0.000   0.000  0.00  0.00           C  
+ATOM      2  CA  PRO     3     -17.000   0.000   0.000  0.00  0.00           C  
+ATOM      3  CA  ILE     4     -16.000   0.000   0.000  0.00  0.00           C  
+ATOM      4  CA  ASN     5     -15.000   0.000   0.000  0.00  0.00           C  
+ATOM      5  CA  VAL     6     -14.000   0.000   0.000  0.00  0.00           C  
+ATOM      6  CA  SER     7     -13.000   0.000   0.000  0.00  0.00           C  
+ATOM      7  CA  CYS     8     -12.000   0.000   0.000  0.00  0.00           C  
+ATOM      8  CA  THR     9     -11.000   0.000   0.000  0.00  0.00           C  
+ATOM      9  CA  GLY    10     -10.000   0.000   0.000  0.00  0.00           C  
+ATOM     10  CA  SER    11      -9.000   0.000   0.000  0.00  0.00           C  
+ATOM     11  CA  PRO    12      -8.000   0.000   0.000  0.00  0.00           C  
+ATOM     12  CA  GLN    13      -7.000   0.000   0.000  0.00  0.00           C  
+ATOM     13  CA  CYS    14      -6.000   0.000   0.000  0.00  0.00           C  
+ATOM     14  CA  ILE    15      -5.000   0.000   0.000  0.00  0.00           C  
+ATOM     15  CA  LYS    16      -4.000   0.000   0.000  0.00  0.00           C  
+ATOM     16  CA  PRO    17      -3.000   0.000   0.000  0.00  0.00           C  
+ATOM     17  CA  CYS    18      -2.000   0.000   0.000  0.00  0.00           C  
+ATOM     18  CA  LYS    19      -1.000   0.000   0.000  0.00  0.00           C  
+ATOM     19  CA  ASP    20       0.000   0.000   0.000  0.00  0.00           C  
+ATOM     20  CA  GLN    21       1.000   0.000   0.000  0.00  0.00           C  
+ATOM     21  CA  GLY    22       2.000   0.000   0.000  0.00  0.00           C  
+ATOM     22  CA  MET    23       3.000   0.000   0.000  0.00  0.00           C  
+ATOM     23  CA  ARG    24       4.000   0.000   0.000  0.00  0.00           C  
+ATOM     24  CA  PHE    25       5.000   0.000   0.000  0.00  0.00           C  
+ATOM     25  CA  GLY    26       6.000   0.000   0.000  0.00  0.00           C  
+ATOM     26  CA  LYS    27       7.000   0.000   0.000  0.00  0.00           C  
+ATOM     27  CA  CYS    28       8.000   0.000   0.000  0.00  0.00           C  
+ATOM     28  CA  MET    29       9.000   0.000   0.000  0.00  0.00           C  
+ATOM     29  CA  ASN    30      10.000   0.000   0.000  0.00  0.00           C  
+ATOM     30  CA  ARG    31      11.000   0.000   0.000  0.00  0.00           C  
+ATOM     31  CA  LYS    32      12.000   0.000   0.000  0.00  0.00           C  
+ATOM     32  CA  CYS    33      13.000   0.000   0.000  0.00  0.00           C  
+ATOM     33  CA  HIS    34      14.000   0.000   0.000  0.00  0.00           C  
+ATOM     34  CA  CYS    35      15.000   0.000   0.000  0.00  0.00           C  
+ATOM     35  CA  THR    36      16.000   0.000   0.000  0.00  0.00           C  
+ATOM     36  CA  PRO    37      17.000   0.000   0.000  0.00  0.00           C  
+ATOM     37  CA  LYS    38      18.000   0.000   0.000  0.00  0.00           C  

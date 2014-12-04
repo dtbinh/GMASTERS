@@ -1,0 +1,46 @@
+1AGTREMARK  ENERGY: 0.831
+REMARK  director-sleep-time: 5
+REMARK  temp_factor_dir: 0.5
+REMARK  temp_factor_search: 0.5
+REMARK  nr-of-directors: 1
+REMARK  limit_prob_dir: 1
+REMARK  limit_prob_search: 1
+REMARK  attempted_threshold_with_dir: 500
+ATOM      0  CA  LEU     1     -24.145  -8.822   2.232  1.00  1.00           C
+ATOM      1  CA  LEU     2     -23.962  -8.918   3.21   1.00  1.00           C
+ATOM      2  CA  LEU     3     -24.147  -8.976   4.191  1.00  1.00           C
+ATOM      3  CA  LEU     4     -24.882  -8.492   3.718  1.00  1.00           C
+ATOM      4  CA  SER     5     -25.078  -8.38    2.744  1.00  1.00           C
+ATOM      5  CA  LEU     6     -24.471  -7.733   2.282  1.00  1.00           C
+ATOM      6  CA  SER     7     -24.808  -6.85    1.957  1.00  1.00           C
+ATOM      7  CA  LEU     8     -24.898  -6.286   1.136  1.00  1.00           C
+ATOM      8  CA  SER     9     25.329  -6.617   0.595  1.00  1.00           C
+ATOM      9  CA  LEU    10     -25.388  -6.804  -0.346  1.00  1.00           C
+ATOM     10  CA  SER    11     -25.463  -6.679  -1.336  1.00  1.00           C
+ATOM     11  CA  LEU    12     25.493  -5.705  -1.559  1.00  1.00           C
+ATOM     12  CA  SER    13     25.419  -4.749  -1.275  1.00  1.00           C
+ATOM     13  CA  LEU    14     24.937  -5.388  -0.676  1.00  1.00           C
+ATOM     14  CA  LEU    15     25.034  -4.721   0.063  1.00  1.00           C
+ATOM     15  CA  SER    16     25.4   -3.821  -0.171  1.00  1.00           C
+ATOM     16  CA  LEU    17     -24.91   -3.605  -0.863  1.00  1.00           C
+ATOM     17  CA  LEU    18     -23.911  -3.61   -0.836  1.00  1.00           C
+ATOM     18  CA  SER    19     -23.115  -4.204  -0.72   1.00  1.00           C
+ATOM     19  CA  SER    20     -22.625  -4.862  -1.291  1.00  1.00           C
+ATOM     20  CA  SER    21     -21.909  -5.271  -1.858  1.00  1.00           C
+ATOM     21  CA  LEU    22     -20.93   -5.264  -1.663  1.00  1.00           C
+ATOM     22  CA  LEU    23     -21.023  -5.708  -0.77   1.00  1.00           C
+ATOM     23  CA  SER    24     -21.299  -6.593  -0.397  1.00  1.00           C
+ATOM     24  CA  SER    25     -21.988  -7.079   0.14   1.00  1.00           C
+ATOM     25  CA  LEU    26     -21.78   -6.535   0.953  1.00  1.00           C
+ATOM     26  CA  SER    27     -22.08   -7.132   1.696  1.00  1.00           C
+ATOM     27  CA  LEU    28     -21.75   -6.332   2.197  1.00  1.00           C
+ATOM     28  CA  LEU    29     -22.046  -5.378   2.258  1.00  1.00           C
+ATOM     29  CA  SER    30     -22.983  -5.558   2.557  1.00  1.00           C
+ATOM     30  CA  SER    31     -22.442  -6.066   3.228  1.00  1.00           C
+ATOM     31  CA  SER    32     -22.48   -6.033   4.226  1.00  1.00           C
+ATOM     32  CA  LEU    33     -22.43   -5.651   5.149  1.00  1.00           C
+ATOM     33  CA  SER    34     -21.952  -4.799   5.362  1.00  1.00           C
+ATOM     34  CA  LEU    35     -21.009  -5.097   5.505  1.00  1.00           C
+ATOM     35  CA  SER    36     -21.178  -4.345   6.142  1.00  1.00           C
+ATOM     36  CA  LEU    37     -21.921  -4.083   6.756  1.00  1.00           C
+ATOM     37  CA  SER    38     -22.506  -4.426   7.492  1.00  1.00           C
