@@ -1184,7 +1184,7 @@ to button_environment_agent_go
         set temp_factor_search fator_temp_orch_antigo * (1); ^ ticks) ; 0.95
 
         set potentials lput current_energy potentials
-        create_pdb_from_simulation (word title "." ticks)
+        create_pdb_from_simulation (word title "." ticks “.pdb”)
         tick
         if (temperature = 0.0) [ 
 
@@ -1202,7 +1202,7 @@ to button_environment_agent_go
 
          ; only available in gui
          ;export-interface (word (word date-and-time (word "ftaa" temp_factor_search)) (word word (word "fto" word temp_factor_search (word "orchsleep" word director-sleep-time word "nod" nr-of-directors)) (word "limitar_prob_orch" limit_prob_dir)  (word ((word "limitar_prob_aa" limit_prob_search))".jpg") ))
-        create_pdb_from_simulation (word title "." ticks "last)
+        create_pdb_from_simulation (word title "." ticks "last” “.pdb”)
          user-message "Outputs generated!"
          
 
