@@ -1186,9 +1186,7 @@ to button_environment_agent_go
 
         set potentials lput current_energy potentials
         
-        ;;TESTANdo CABRA SAFADO LARAZENTO QUE DÁ ERRO. ERRO na funcao create_pdb_from_sim
-        ;DESATIVANDO UM PDB A CADA TICK ATÉ RESOLVERMOS
-	;create_pdb_from_simulation (word title "." ticks ".pdb")
+	    create_pdb_from_simulation (word title "." ticks ".pdb")
         tick
         if (temperature = 0.0) [ 
 
@@ -1206,7 +1204,7 @@ to button_environment_agent_go
 
          ; only available in gui
          ;export-interface (word (word date-and-time (word "ftaa" temp_factor_search)) (word word (word "fto" word temp_factor_search (word "orchsleep" word director-sleep-time word "nod" nr-of-directors)) (word "limitar_prob_orch" limit_prob_dir)  (word ((word "limitar_prob_aa" limit_prob_search))".jpg") ))
-         create_pdb_from_simulation (word title "." ticks "last" ".pdb")
+         ;create_pdb_from_simulation (word title "." ticks "last" ".pdb")
          user-message "Outputs generated!"
          
 
@@ -1303,7 +1301,7 @@ to create_pdb_from_simulation [output-file]
      let ini position "." (word precision xcor 3)
      let end_ length(word precision xcor 3)
      
-     if( length( substring (word precision xcor 3) ini end_)  < 4) [file-type " "]
+     if (ini != FALSE) and ( length( substring (word precision xcor 3) ini end_)  < 4) [file-type " "]
      
      
      if(ycor > 0)[file-type " "] ifelse(ycor < 10)[file-type "  "][ifelse(ycor < 100.0)[file-type " "][file-type ""]] file-type precision ycor 3
@@ -1312,14 +1310,14 @@ to create_pdb_from_simulation [output-file]
      set ini position "." (word precision ycor 3)
      set end_ length(word precision ycor 3)
      ;show id
-     if( length( substring (word precision ycor 3) ini end_) < 4) [file-type " "]
+     if (ini != FALSE) and ( length( substring (word precision ycor 3) ini end_) < 4) [file-type " "]
      
      if(zcor > 0)[file-type " "] ifelse(zcor < 10)[file-type "  "][ifelse(zcor < 100.0)[file-type " "][file-type ""]] file-type precision zcor 3
      
      set ini position "." (word precision zcor 3)
      set end_ length(word precision zcor 3)
      
-     if( length( substring (word precision zcor 3) ini end_) < 4) [file-type " "]
+     if (ini != FALSE) and ( length( substring (word precision zcor 3) ini end_) < 4) [file-type " "]
      
      file-type "  "
      file-type "1.00" 
