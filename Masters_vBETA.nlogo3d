@@ -1186,7 +1186,7 @@ to button_environment_agent_go
 
         set potentials lput current_energy potentials
         
-	    create_pdb_from_simulation (word title "." ticks ".pdb")
+        create_pdb_from_simulation (word title "." ticks ".pdb")
         tick
         if (temperature = 0.0) [ 
 
