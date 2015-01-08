@@ -1272,7 +1272,26 @@ end
 
 to create_pdb_from_simulation [output-file]
   without-interruption [
+  let model_test "-"     
   file-open output-file
+  ifelse (ticks < 10) [ 
+    set model_test "MODEL        "   
+    set model_test word model_test ticks
+    file-type model_test
+   ]
+  [
+    ifelse(ticks < 100)[
+      set model_test "MODEL       "   
+      set model_test word model_test ticks
+      file-type model_test
+      ]
+    [
+      set model_test "MODEL      "   
+      set model_test word model_test ticks
+      file-type model_test
+      ]
+   ]
+  file-print ""
   file-print word "REMARK  TITLE: " title
   file-print word "REMARK  LOWER ENERGY: " precision lower_energy 3 
   file-print word "REMARK  LOWER ENERGY TICK: " precision lower_energy_tick 3
@@ -1334,7 +1353,8 @@ to create_pdb_from_simulation [output-file]
   ] 
 
    set id id + 1
-  ] 
+  ]
+  file-print "ENDMDL"
   file-close
   ]
 end
