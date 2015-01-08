@@ -1274,7 +1274,8 @@ to create_pdb_from_simulation [output-file]
   without-interruption [
   file-open output-file
   file-type title
-  file-print word "REMARK  ENERGY: " precision lower_energy 3 
+  file-print word "REMARK  LOWER ENERGY: " precision lower_energy 3 
+  file-print word "REMARK  LOWER ENERGY TICK: " precision lower_energy_tick 3
   file-print word "REMARK  director-sleep-time: " director-sleep-time 
   file-print word "REMARK  temp_factor_dir: " temp_factor_dir 
   file-print word "REMARK  temp_factor_search: " temp_factor_search 
