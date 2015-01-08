@@ -1285,7 +1285,7 @@ to create_pdb_from_simulation [output-file]
   file-print word "REMARK  tick: " ticks
   file-print word "REMARK  current_energy: " current_energy 
   file-print word "REMARK  acc_ratio_searching_agents: " acc_ratio_search
-  file-print word "REMARK  acc_ration_director_agents: "acc_ratio_dir
+  file-print word "REMARK  acc_ratio_director_agents: "acc_ratio_dir
   let id 0
   
   while [id < nr-of-aminos] 
