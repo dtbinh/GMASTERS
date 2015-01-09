@@ -1209,6 +1209,7 @@ to run_masters
     button_startup
     button_load_fasta_seq
     button_create_agents
+    set is_running true
 end  
 
 to-report ask_energy
