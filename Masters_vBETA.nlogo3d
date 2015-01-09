@@ -1182,16 +1182,17 @@ to step
     set temp_factor_search fator_temp_buscadores_antigo * (1); ^ ticks) ; 0.998
     set temp_factor_search fator_temp_orch_antigo * (1); ^ ticks) ; 0.95
 
-    set potentials lput current_energy potentials
-    
-    create_pdb_from_simulation (word title ".pdb")
-    tick
-    if (temperature = 0.0) [ 
+        set potentials lput current_energy potentials
+        
+        create_pdb_from_simulation (word job_path title ".pdb")
+        tick
+        if (temperature = 0.0) [ 
 
         if current_energy < lower_energy [set lower_energy current_energy set lower_energy_tick ticks]
 
         set old_energy current_energy
         set current_energy compute_global_energy
+
 
         show "SIMULATION TIME:"
         show timer
@@ -1199,7 +1200,7 @@ to step
 
          ; only available in gui
         ; export-interface (word (word date-and-time (word "ftaa" temp_factor_search)) (word word (word "fto" word temp_factor_search (word "orchsleep" word director-sleep-time word "nod" nr-of-directors)) (word "limitar_prob_orch" limit_prob_dir)  (word ((word "limitar_prob_aa" limit_prob_search))".jpg") ))
-        create_pdb_from_simulation (word title ".last.pdb")
+        create_pdb_from_simulation (word job_path title ".last.pdb")
         user-message "Outputs generated!" 
         set is_running false
     ]
@@ -1252,29 +1253,30 @@ end
 
 to create_pdb_from_simulation [output-file]
   without-interruption [
-  let model_test "-"     
+  let model_test "-"
+  let model ticks + 1     
   file-open output-file
-  ifelse (ticks < 10) [ 
+  ifelse (model < 10) [ 
     set model_test "MODEL        "   
-    set model_test word model_test ticks
+    set model_test word model_test model
     file-type model_test
    ]
   [
-    ifelse(ticks < 100)[
+    ifelse(model < 100)[
       set model_test "MODEL       "   
-      set model_test word model_test ticks
+      set model_test word model_test model
       file-type model_test
       ]
     [
       set model_test "MODEL      "   
-      set model_test word model_test ticks
+      set model_test word model_test model
       file-type model_test
       ]
    ]
   file-print ""
   file-print word "REMARK  TITLE: " title
   file-print word "REMARK  LOWER ENERGY: " precision lower_energy 3 
-  file-print word "REMARK  LOWER ENERGY TICK: " precision lower_energy_tick 3
+  file-print word "REMARK  LOWER ENERGY MODEL: " precision (lower_energy_tick + 1) 3
   file-print word "REMARK  director-sleep-time: " director-sleep-time 
   file-print word "REMARK  temp_factor_dir: " temp_factor_dir 
   file-print word "REMARK  temp_factor_search: " temp_factor_search 
@@ -1282,7 +1284,7 @@ to create_pdb_from_simulation [output-file]
   file-print word "REMARK  limit_prob_dir: " limit_prob_dir 
   file-print word "REMARK  limit_prob_search: " limit_prob_search 
   file-print word "REMARK  attempted_threshold_with_dir: " attempted_threshold_with_dir 
-  file-print word "REMARK  tick: " ticks
+  file-print word "REMARK  MODEL: " (ticks + 1)
   file-print word "REMARK  current_energy: " current_energy 
   file-print word "REMARK  acc_ratio_searching_agents: " acc_ratio_search
   file-print word "REMARK  acc_ratio_director_agents: "acc_ratio_dir
@@ -1580,6 +1582,17 @@ INPUTBOX
 105
 title
 1AGT
+1
+0
+String
+
+INPUTBOX
+10
+40
+140
+105
+job_path
+/Users/thiagolipinskipaes/Desktop/teste
 1
 0
 String
