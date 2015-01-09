@@ -17,21 +17,24 @@ public class Masters {
         workspace = HeadlessWorkspace.newInstance();
     }
 
-    public void loadParameters(String filename) {
+    public void loadParameters(String filename) throws Exception{
         try {
             workspace.open("Masters_vBETA.nlogo3d");
             setSimulationParameters(filename);
         } catch(Exception ex) {
             ex.printStackTrace();
         }
-    }
-
-    public void run() throws Exception {
-        // Set random seed for reproducible experiments
         workspace.command("random-seed 0");
-        // Clear all
         workspace.command("ca");
         workspace.command("run_masters");
+    }
+
+    public void step() throws Exception {
+        workspace.command("step");
+    }
+
+    public Object is_running() throws Exception {
+        return workspace.report("is_running");
     }
 
     public void printReporters() throws Exception {

@@ -8,6 +8,7 @@ array_z
   
 computes_counter
 finish
+is_running
 nonbond_energys 
 bond_energys
 e1
@@ -1134,77 +1135,73 @@ end
 
 
 
-to button_environment_agent_go
-    loop [
-        if (ticks = 100) []
-        if (ticks = 0) AND (reseted = 0) [
+to step
+    set is_running true
+    if (ticks = 100) []
+    if (ticks = 0) AND (reseted = 0) [
         set lower_energy 999999999
         set lower_energy_tick "no one"
         set reseted 1 reset-timer print "Timer reseted!"
+    ]
 
-        ]
+    let fator_temp_orch_antigo temp_factor_search  ;;arrumar
+    let fator_temp_buscadores_antigo temp_factor_search
+    ask environment_agents [environment 1]
+    set old_energy current_energy
+    set current_energy compute_global_energy
 
-
-        let fator_temp_orch_antigo temp_factor_search  ;;arrumar
-        let fator_temp_buscadores_antigo temp_factor_search
-        ask environment_agents [environment 1]
-        set old_energy current_energy
-        set current_energy compute_global_energy
-
-        if current_energy < lower_energy [set lower_energy current_energy set lower_energy_tick ticks]
-        without-interruption [
-         
+    if current_energy < lower_energy [set lower_energy current_energy set lower_energy_tick ticks]
+    without-interruption [
         ;; PRINTING - TEST
         ifelse (acc_ratio_try_search = 0) [][
-        if ( (acc_ratio_acc_search / acc_ratio_try_search) != 0) [ ; file-write "REMARK       ACC RATIO AAs:"  file-write precision (acc_ratio_acc_aa / acc_ratio_try_aa) 8  file-type "\n"
-        ]
-        set acc_ratio_search (acc_ratio_acc_search / acc_ratio_try_search)
+            if ( (acc_ratio_acc_search / acc_ratio_try_search) != 0) [ ; file-write "REMARK       ACC RATIO AAs:"  file-write precision (acc_ratio_acc_aa / acc_ratio_try_aa) 8  file-type "\n"
+            ]
+            set acc_ratio_search (acc_ratio_acc_search / acc_ratio_try_search)
         ]
 
         ifelse (acc_ratio_try_dir = 0) [][
-        if ( (acc_ratio_acc_dir / acc_ratio_try_dir) != 0) [  ;file-write "REMARK       ACC RATIO ORCH:"  file-write precision (acc_ratio_acc_orch / acc_ratio_try_orch) 8 file-type "\n"
-        ]
-        set acc_ratio_dir (acc_ratio_acc_dir / acc_ratio_try_dir)
+            if ( (acc_ratio_acc_dir / acc_ratio_try_dir) != 0) [  ;file-write "REMARK       ACC RATIO ORCH:"  file-write precision (acc_ratio_acc_orch / acc_ratio_try_orch) 8 file-type "\n"
+            ]
+            set acc_ratio_dir (acc_ratio_acc_dir / acc_ratio_try_dir)
         ]
         shell:cd ".."
         ;; PRINTING END - TEST
-        ]
+    ]
 
-            
-        ifelse ( ( (current_energy - old_energy) < energy_variation_threshold) AND ( (current_energy - old_energy) > (energy_variation_threshold * -1) ) ) 
-        [; user-message (energia_atual - old_energy) 
-        set no_variation_in_energy no_variation_in_energy + 1][set no_variation_in_energy 0] 
-         
-             
-             set acc_ratio_acc_dir 0 set acc_ratio_try_dir 0
-             set acc_ratio_acc_search 0 set acc_ratio_try_search 0
-
-        if (no_variation_in_energy >= max_number_of_no_improvement_in_energy)[set temperature 0]
-
-        set temp_factor_search fator_temp_buscadores_antigo * (1); ^ ticks) ; 0.998
-        set temp_factor_search fator_temp_orch_antigo * (1); ^ ticks) ; 0.95
-
-        set potentials lput current_energy potentials
         
-        create_pdb_from_simulation (word title ".pdb")
-        tick
-        if (temperature = 0.0) [ 
+    ifelse ( ( (current_energy - old_energy) < energy_variation_threshold) AND ( (current_energy - old_energy) > (energy_variation_threshold * -1) ) ) 
+    [; user-message (energia_atual - old_energy) 
+    set no_variation_in_energy no_variation_in_energy + 1][set no_variation_in_energy 0] 
+     
+         
+    set acc_ratio_acc_dir 0 set acc_ratio_try_dir 0
+    set acc_ratio_acc_search 0 set acc_ratio_try_search 0
 
-            if current_energy < lower_energy [set lower_energy current_energy set lower_energy_tick ticks]
+    if (no_variation_in_energy >= max_number_of_no_improvement_in_energy)[set temperature 0]
 
-            set old_energy current_energy
-            set current_energy compute_global_energy
+    set temp_factor_search fator_temp_buscadores_antigo * (1); ^ ticks) ; 0.998
+    set temp_factor_search fator_temp_orch_antigo * (1); ^ ticks) ; 0.95
 
-            show "SIMULATION TIME:"
-            show timer
-            if current_energy <= lower_energy [set lower_energy current_energy set lower_energy_tick ticks]
+    set potentials lput current_energy potentials
+    
+    create_pdb_from_simulation (word title ".pdb")
+    tick
+    if (temperature = 0.0) [ 
 
-             ; only available in gui
-            ; export-interface (word (word date-and-time (word "ftaa" temp_factor_search)) (word word (word "fto" word temp_factor_search (word "orchsleep" word director-sleep-time word "nod" nr-of-directors)) (word "limitar_prob_orch" limit_prob_dir)  (word ((word "limitar_prob_aa" limit_prob_search))".jpg") ))
-            create_pdb_from_simulation (word title ".last.pdb")
-            user-message "Outputs generated!" 
-            stop
-        ]
+        if current_energy < lower_energy [set lower_energy current_energy set lower_energy_tick ticks]
+
+        set old_energy current_energy
+        set current_energy compute_global_energy
+
+        show "SIMULATION TIME:"
+        show timer
+        if current_energy <= lower_energy [set lower_energy current_energy set lower_energy_tick ticks]
+
+         ; only available in gui
+        ; export-interface (word (word date-and-time (word "ftaa" temp_factor_search)) (word word (word "fto" word temp_factor_search (word "orchsleep" word director-sleep-time word "nod" nr-of-directors)) (word "limitar_prob_orch" limit_prob_dir)  (word ((word "limitar_prob_aa" limit_prob_search))".jpg") ))
+        create_pdb_from_simulation (word title ".last.pdb")
+        user-message "Outputs generated!" 
+        set is_running false
     ]
 end
 
@@ -1212,7 +1209,6 @@ to run_masters
     button_startup
     button_load_fasta_seq
     button_create_agents
-    button_environment_agent_go
 end  
 
 to-report ask_energy
