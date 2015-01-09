@@ -1190,38 +1190,21 @@ to button_environment_agent_go
         tick
         if (temperature = 0.0) [ 
 
-        if current_energy < lower_energy [set lower_energy current_energy set lower_energy_tick ticks]
+            if current_energy < lower_energy [set lower_energy current_energy set lower_energy_tick ticks]
 
-        set old_energy current_energy
-        set current_energy compute_global_energy
+            set old_energy current_energy
+            set current_energy compute_global_energy
 
+            show "SIMULATION TIME:"
+            show timer
+            if current_energy <= lower_energy [set lower_energy current_energy set lower_energy_tick ticks]
 
-        if (no_variation_in_energy >= max_number_of_no_improvement_in_energy)[
-        if current_energy < lower_energy [set lower_energy current_energy set lower_energy_tick ticks]
-        set temperature 0 
-
-
-
-         ; only available in gui
-         ;export-interface (word (word date-and-time (word "ftaa" temp_factor_search)) (word word (word "fto" word temp_factor_search (word "orchsleep" word director-sleep-time word "nod" nr-of-directors)) (word "limitar_prob_orch" limit_prob_dir)  (word ((word "limitar_prob_aa" limit_prob_search))".jpg") ))
-         ;create_pdb_from_simulation (word title "." ticks "last" ".pdb")
-         user-message "Outputs generated!"
-         
-
-        stop]
-
-        show "SIMULATION TIME:"
-        show timer
-        if current_energy <= lower_energy [set lower_energy current_energy set lower_energy_tick ticks]
-
-         ; only available in gui
-        ; export-interface (word (word date-and-time (word "ftaa" temp_factor_search)) (word word (word "fto" word temp_factor_search (word "orchsleep" word director-sleep-time word "nod" nr-of-directors)) (word "limitar_prob_orch" limit_prob_dir)  (word ((word "limitar_prob_aa" limit_prob_search))".jpg") ))
-        create_pdb_from_simulation (word title ".last.pdb")
-        ;create_pdb_from_simulation date-and-time 
-         user-message "Outputs generated!"
-
-
-         stop]
+             ; only available in gui
+            ; export-interface (word (word date-and-time (word "ftaa" temp_factor_search)) (word word (word "fto" word temp_factor_search (word "orchsleep" word director-sleep-time word "nod" nr-of-directors)) (word "limitar_prob_orch" limit_prob_dir)  (word ((word "limitar_prob_aa" limit_prob_search))".jpg") ))
+            create_pdb_from_simulation (word title ".last.pdb")
+            user-message "Outputs generated!" 
+            stop
+        ]
     ]
 end
 
