@@ -1184,6 +1184,7 @@ to step
 
         set potentials lput current_energy potentials
         
+        create_pdb_from_simulation (word job_path title "-current.pdb")
         create_pdb_from_simulation (word job_path title ".pdb")
         tick
         if (temperature = 0.0) [ 
