@@ -1106,7 +1106,7 @@ to button_load_fasta_seq_backup ;; LEMBRANDO QUE ESSE BOTAO É CHAMADO PELA FUNC
   
   paint
   ask turtles [set size searching-size ]
-  ;set temperature 10
+  set temperature 10
 ;  user-message "Fasta Sequence has been loaded successfully!"
 end
 
@@ -1187,6 +1187,7 @@ to step
 
         set potentials lput current_energy potentials
         
+        move-origin
         create_pdb_from_simulation (word job_path title "-current.pdb")
         create_pdb_from_simulation (word job_path title ".pdb")
         tick
@@ -1204,7 +1205,8 @@ to step
 
          ; only available in gui
         ; export-interface (word (word date-and-time (word "ftaa" temp_factor_search)) (word word (word "fto" word temp_factor_search (word "orchsleep" word director-sleep-time word "nod" nr-of-directors)) (word "limitar_prob_orch" limit_prob_dir)  (word ((word "limitar_prob_aa" limit_prob_search))".jpg") ))
-        create_pdb_from_simulation (word job_path title ".last.pdb")
+        
+        ;create_pdb_from_simulation (word job_path title ".last.pdb")
         user-message "Outputs generated!" 
         set is_running false
     ]
@@ -1488,6 +1490,35 @@ set (attempted_threshold_with_dir) read-from-string (item 6 (split parameters "-
 end
 
 
+to move-origin
+  
+  let x_sum 0
+  let y_sum 0
+  let z_sum 0
+  
+  ask searchings [ 
+    set x_sum x_sum + xcor 
+    set y_sum y_sum + ycor 
+    set z_sum z_sum + zcor 
+    ]
+  
+  set x_sum x_sum / (count searchings)
+  set y_sum y_sum / (count searchings)
+  set z_sum z_sum / (count searchings)
+
+  ask searchings [ 
+   set xcor xcor - x_sum 
+   set ycor ycor - y_sum 
+   set zcor zcor - z_sum 
+    ]
+
+;print x_sum
+;print y_sum
+;print z_sum
+
+end
+
+
 ; Copyright 2011-2014 Thiago Lipinski Paes. All rights reserved.
 @#$#@#$#@
 GRAPHICS-WINDOW
@@ -1623,7 +1654,6 @@ min_pxcor
 0
 Number
 
-
 INPUTBOX
 1315
 80
@@ -1646,7 +1676,6 @@ min_pycor
 0
 Number
 
-
 INPUTBOX
 1315
 80
@@ -1657,7 +1686,6 @@ max_pycor
 1
 0
 Number
-
 
 INPUTBOX
 1315
@@ -1670,7 +1698,6 @@ min_pzcor
 0
 Number
 
-
 INPUTBOX
 1315
 80
@@ -1681,7 +1708,6 @@ max_pzcor
 1
 0
 Number
-
 
 BUTTON
 289
@@ -1938,7 +1964,7 @@ INPUTBOX
 1410
 160
 temperature
-9.604000000000001
+8.00731350749796
 1
 0
 Number
