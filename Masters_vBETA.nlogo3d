@@ -1109,7 +1109,8 @@ to button_load_fasta_seq_backup ;; LEMBRANDO QUE ESSE BOTAO É CHAMADO PELA FUNC
 end
 
 to button_load_fasta_seq ;;vou carregar um pdb no inicio do programa - depois dá pra mudar nome desse "botao" 
-  load_pdb "MastersInput.pdb"
+  show input_coords
+  load_pdb input_coords
 end
 
 
@@ -1594,6 +1595,17 @@ INPUTBOX
 105
 job_path
 /Users/thiagolipinskipaes/Desktop/teste
+1
+0
+String
+
+INPUTBOX
+10
+40
+140
+105
+input_coords
+/Users/thiagolipinskipaes/Desktop/teste/MastersInput.pdb
 1
 0
 String
