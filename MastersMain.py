@@ -88,6 +88,7 @@ class MastersMain():
         self.builder.add_from_file(os.path.join(self.gui, "MessageDialogs.glade")) #
         self.builder.add_from_file(os.path.join(self.gui, "MastersAboutDialog.glade")) 
         self.win     = self.builder.get_object("window1")                             #
+        #self.win.connect("destroy", lambda x: gtk.main_quit())
         self.win.show()                                                               #
         self.builder.connect_signals(self)                                            #
                                                                                       #
@@ -201,7 +202,26 @@ class MastersMain():
     
         --------------------------------------------------
     ''' 
+    
+    def on_menuitem_quit_activate (self, menuitem):
+        """ Function doc """
+        gtk.main_quit()
+        cmd.quit()
+    
+    def on_window1_delete_event (self, widget, data):
+        """ Function doc """
+        print 'delete'
+        gtk.main_quit()
+        cmd.quit()
         
+    
+    def on_window1_destroy_event (self, widget):
+        """ Function doc """
+        print 'destroy'
+        gtk.main_quit()
+        cmd.quit()
+        
+    
     def Load_GUI_ConfigFile (self, filename = None):
         """ Function doc """
         #.config

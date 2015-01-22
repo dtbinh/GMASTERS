@@ -1,9 +1,4 @@
-import gobject
 import sys
-import glob, math, os
-
-
-
 
 #System
 import datetime
