@@ -273,6 +273,7 @@ set standard_output "SEDS/teste1.txt"
 
 
 load-parameters
+show job_path
 end
  
   ;;;;;;;;;;;;;;;;MOVIMENTO TIPO PIVOT - DIRECTOR AGENT
