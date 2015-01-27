@@ -15,17 +15,20 @@ public class Masters {
 
     public Masters() {
         workspace = HeadlessWorkspace.newInstance();
-    }
-
-    public void loadParameters(String filename) throws Exception{
         try {
             workspace.open("Masters_vBETA.nlogo3d");
-            setSimulationParameters(filename);
+            workspace.command("random-seed 0");
         } catch(Exception ex) {
             ex.printStackTrace();
         }
-        workspace.command("random-seed 0");
+    }
+
+    public void loadParameters(String filename) throws Exception{
         workspace.command("ca");
+        System.out.println("Reading parameters from " + filename);
+        System.out.println("===========================");
+        setSimulationParameters(filename);
+        System.out.println("===========================");
         workspace.command("run_masters");
     }
 
@@ -61,6 +64,7 @@ public class Masters {
         while (e.hasMoreElements()) {
             String key = (String) e.nextElement();
             String value = prop.getProperty(key);
+            System.out.println(key + " = " + value);
             workspace.command("set " + key + " " + value);
         }
     }
