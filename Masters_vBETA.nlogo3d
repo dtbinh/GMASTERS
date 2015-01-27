@@ -1106,7 +1106,7 @@ to button_load_fasta_seq_backup ;; LEMBRANDO QUE ESSE BOTAO É CHAMADO PELA FUNC
   
   paint
   ask turtles [set size searching-size ]
-  set temperature 10
+  ;set temperature 10
 ;  user-message "Fasta Sequence has been loaded successfully!"
 end
 
