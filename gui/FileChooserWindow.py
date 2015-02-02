@@ -18,31 +18,31 @@ class FileChooserWindow():
                                         (gtk.STOCK_CANCEL, gtk.RESPONSE_CANCEL,
                                          gtk.STOCK_OPEN, gtk.RESPONSE_OK))
 
+        
+
+        
+        
+        
         filter = gtk.FileFilter()  # adiciona o filtro de busca de arquivos
-        filter.set_name("Masters projects - *.masters")
-        #
-        filter.add_mime_type("Master projects")
-        filter.add_pattern("*.masters")
-        #
-        #chooser.add_filter(filter)
-        #filter = gtk.FileFilter()
-        #filter.set_name("pDynamo pkl files  - *.pkl")
-        #filter.add_pattern("*.pkl")
-        ##
-        ##
-        #chooser.add_filter(filter)
-        #filter = gtk.FileFilter()
-        #filter.set_name("pDynamo yaml files  - *.yaml")
-        #filter.add_pattern("*.yaml")
-        ##
-        #chooser.add_filter(filter)
-        #filter = gtk.FileFilter()
-        #filter.set_name("All files")
-        #filter.add_pattern("*")
-        ##
+        
+        filter = gtk.FileFilter()
+        filter.set_name("All files")
+        filter.add_pattern("*")        
         chooser.add_filter(filter)  # termina  - filtro de arquivos.
 
-        # chooser.set_current_folder(data_path)
+
+        filter.set_name("Masters projects - *.masters")
+        filter.add_mime_type("Master projects")
+        filter.add_pattern("*.masters")
+        chooser.add_filter(filter)
+        
+        
+        filter = gtk.FileFilter()
+        filter.set_name("pdb files  - *.pdb")
+        filter.add_pattern("*.pdb")
+        chooser.add_filter(filter)
+        
+    
 
         response = chooser.run()
         if response == gtk.RESPONSE_OK:

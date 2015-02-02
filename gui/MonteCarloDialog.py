@@ -46,9 +46,37 @@ except:
     print 'Impossible to import py4j.java_gateway / JavaGateway'
     print 'Please try: sudo pip instal py4j'
 
-from modules.LogFileParse import LogFileParse
+from modules.LogFileParse  import LogFileParse
+from modules.LogFileParse  import fromParametersToFile
+from gui.FileChooserWindow import FileChooserWindow 
 
-from modules.LogFileParse import fromParametersToFile
+
+
+FileTypeDic = {
+              'pdb':'initial coordinates',
+              'res':'spatial restraints',
+              'adr':'angular and dihedrals restraints'
+              }
+
+
+def GetFileType(filename):
+    FileType = filename.split('.')
+    FileType = FileType[-1]
+    
+    FileType2 = FileType.lower()
+    DataType  = None
+    
+    if FileType2 in FileTypeDic:
+        DataType = FileTypeDic[FileType2]
+    else:
+        DataType = "Unknow"
+    
+    return FileType, DataType
+
+
+
+
+
 
 class MonteCarloDialog:
     """ Class doc """
@@ -67,6 +95,9 @@ class MonteCarloDialog:
         self.builder.add_from_file(os.path.join(self.gui, 'MonteCarloDialog.glade'))
         self.builder.connect_signals(self)
         self.dialog  = self.builder.get_object('dialog1')
+        
+        self.FileChooserWindow = FileChooserWindow()
+        
         #---------------------------------------------------------------------#
         
     
@@ -82,11 +113,23 @@ class MonteCarloDialog:
         #                 INPUT FILES                 #
         #---------------------------------------------#
 
+        dic = {
+               "file":{
+                       "_type" : "inital_coords",
+                       "format": "pdb"
+                      }
+              }
+
+
+
         if ReRunJOB == None:
-            self.InputFiles = None#{
-                             #'input_coords': self.Session.projects[self.Session.ActivedProject]['Jobs']['0']['Output']
-                             #}
-        else:                #
+            self.InputFiles = {} #None#{
+                                 #    #'input_coords': self.Session.projects[self.Session.ActivedProject]['Jobs']['0']['Output']
+                                 #    #'restrants'   : file
+                                 #    #}
+                                  
+                                  
+        else:                         
             self.InputFiles = None #{
                              #'input_coords': self.Session.projects[self.Session.ActivedProject]['Jobs']['0']['Output']
                              #}
@@ -293,6 +336,19 @@ class MonteCarloDialog:
         self.Session.AddJobHistoryToTreeview()
     
     
+    
+    
+    #-------------TREEVIEW METHODS--------------#
+    def addDataToTreeview (self):
+        """ Function doc """
+        model = self.builder.get_object('liststore1')
+        #model = liststore
+
+        for i in self.InputFiles:
+            data = [self.InputFiles[i]["_type"], self.InputFiles[i]["format"], i]
+            model.append(data)
+    
+    
     #----------------------------BUTTONS---------------------------#
     def on_button_RunMCSimulation_clicked (self, button):
         """ Function doc """
@@ -375,9 +431,45 @@ class MonteCarloDialog:
         
         self.RunMastersMCSimulation()
   
+    
+
+
+
+
+
+
+    
     def on_button_addFiles_clicked(self, button):
         """ Function doc """
         print 'Add new files'
+        fileout            = self.FileChooserWindow.GetFileName(self.builder)
+        FileType, DataType = GetFileType(fileout)
+        print fileout, FileType, DataType
+        self.InputFiles[fileout] = {"_type":DataType, "format":FileType}
+        self.addDataToTreeview()
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+        #dic = {
+        #       "file":{
+        #               "_type" : "inital_coords",
+        #               "format": "pdb"
+        #              }
+        #      }
         
     def on_button_removeFile_clicked(self, button):
         """ Function doc """
