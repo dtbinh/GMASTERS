@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<interface>
+  <requires lib="gtk+" version="2.24"/>
+  <!-- interface-naming-policy project-wide -->
+  <object class="GtkAboutDialog" id="aboutdialog">
+    <property name="can_focus">False</property>
+    <property name="border_width">5</property>
+    <property name="title" translatable="yes">About GTKDynamo</property>
+    <property name="type_hint">dialog</property>
+    <property name="program_name">MASTERS GUI</property>
+    <property name="version">0.1.1</property>
+    <property name="copyright" translatable="yes">Copyright 2015 LABIO</property>
+    <property name="comments" translatable="yes">MASTERS graphical user interface</property>
+    <property name="license" translatable="yes">---- MASTERS / MASTERS GUI ----
+	                    
+	
+           visit: http://www.labio.org
+
+   This program is free software; you can redistribute it and/or modify
+   it under the terms of the GNU General Public License as published by
+   the Free Software Foundation; either version 2 of the License, or
+   (at your option) any later version.
+
+   This program is distributed in the hope that it will be useful,
+   but WITHOUT ANY WARRANTY; without even the implied warranty of
+   MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+   GNU General Public License for more details.</property>
+    <property name="authors">Thiago Lipinski-Paes
+Michele dos Santos da Silva
+José Fernando Ruggiero Bachega
+Osmar Norberto de Souza</property>
+    <property name="logo">icon_MC_logo150x150.png</property>
+    <child internal-child="vbox">
+      <object class="GtkVBox" id="dialog-vbox83">
+        <property name="visible">True</property>
+        <property name="can_focus">False</property>
+        <property name="spacing">2</property>
+        <child internal-child="action_area">
+          <object class="GtkHButtonBox" id="dialog-action_area83">
+            <property name="visible">True</property>
+            <property name="can_focus">False</property>
+            <property name="layout_style">end</property>
+          </object>
+          <packing>
+            <property name="expand">True</property>
+            <property name="fill">True</property>
+            <property name="pack_type">end</property>
+            <property name="position">0</property>
+          </packing>
+        </child>
+        <child>
+          <placeholder/>
+        </child>
+      </object>
+    </child>
+  </object>
+</interface>

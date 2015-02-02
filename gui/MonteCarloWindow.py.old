@@ -1,0 +1,132 @@
+#!/usr/bin/env python
+# -*- coding: utf-8 -*-
+#
+#  MonteCarloWindow.py
+#  
+#  Copyright 2015 Labio <labio@labio-XPS-8300>
+#  
+#  This program is free software; you can redistribute it and/or modify
+#  it under the terms of the GNU General Public License as published by
+#  the Free Software Foundation; either version 2 of the License, or
+#  (at your option) any later version.
+#  
+#  This program is distributed in the hope that it will be useful,
+#  but WITHOUT ANY WARRANTY; without even the implied warranty of
+#  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+#  GNU General Public License for more details.
+#  
+#  You should have received a copy of the GNU General Public License
+#  along with this program; if not, write to the Free Software
+#  Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston,
+#  MA 02110-1301, USA.
+#  
+#  
+
+# System
+import time
+import pygtk
+pygtk.require('2.0')
+import gtk
+#import gtk.gtkgl
+#import gobject
+import sys
+import os
+
+
+import json 
+from pprint import pprint
+
+#gui
+from gui.FileChooserWindow  import FileChooserWindow 
+from modules.GetFileType    import GetFileType
+
+try:
+    from py4j.java_gateway import JavaGateway
+except:
+    print 'Impossible to import py4j.java_gateway / JavaGateway'
+    print 'Please try: sudo pip instal py4j'
+
+
+
+class MonteCarloSimulationWindow:
+    """ Class doc """
+    def __init__ (self,  Session = None, ClickedJobID = None, ReRunJOB = None ):
+        """ Class initialiser """
+        self.Session = Session
+        self.gui          = self.Session.gui
+        self.ClickedJobID = ClickedJobID
+        self.builder      =  None
+        
+        
+        #---------------------------------------------#
+        #              INPUT  PARAMETERS              #
+        #---------------------------------------------#
+        self.InputFiles       = None               
+        self.InputParamaters  = None
+        self.OutputParameters = None
+        self.folder           = ''
+        
+        #---------------------------------------------#
+        #                 INPUT FILES                 #
+        #---------------------------------------------#
+
+        if ReRunJOB == None:
+            self.InputFiles = {
+                              'input_coords': '/home/labio/MastersWorkSpace/labio_project_Jan_20_2015/12_initialCoordinates.pdb',
+                              }
+        else:
+            self.InputFiles = {
+                              'input_coords': '/home/labio/MastersWorkSpace/labio_project_Jan_20_2015/12_initialCoordinates.pdb',
+                              }
+                              
+    def OpenWindow (self):
+        """ Function doc """
+        if self.Session.MonteCarloWindowVisible  ==  False:
+            self.builder = gtk.Builder()
+            self.builder.add_from_file(os.path.join(self.gui,'MonteCarloWindow.glade'))
+            self.builder.connect_signals(self)
+            self.window = self.builder.get_object('window1')
+            self.window.show()                                               
+            self.builder.connect_signals(self)
+                
+            self.Session.MonteCarloWindowVisible = True
+            self.ImportCellValorsFromProject()
+            gtk.main()
+
+
+    def on_MonteCarloSimulationWindow_destroy(self, widget):
+        """ Function doc """
+        self.Session.MonteCarloWindowVisible  =  False
+
+    
+    def ImportCellValorsFromProject (self):
+        """ Function doc """
+        project = self.Session.projects[self.Session.ActivedProject]
+        try:
+            self.builder.get_object('cell_maxX_entry').set_text(str(project['Cell']["maxX"]))
+            self.builder.get_object('cell_maxY_entry').set_text(str(project['Cell']["maxY"]))
+            self.builder.get_object('cell_maxZ_entry').set_text(str(project['Cell']["maxZ"]))
+            self.builder.get_object('cell_minX_entry').set_text(str(project['Cell']["minX"]))
+            self.builder.get_object('cell_minY_entry').set_text(str(project['Cell']["minY"]))
+            self.builder.get_object('cell_minZ_entry').set_text(str(project['Cell']["minZ"]))
+        except:
+            print 'Cell parameters not available'
+
+    def STATUSBAR_SET_TEXT(self, text):
+        """ Function doc """
+        self.builder.get_object('statusbar1').push(0, text)
+
+
+
+
+
+
+
+
+def main():
+	
+	return 0
+
+if __name__ == '__main__':
+	main()
+
