@@ -483,22 +483,45 @@ class MastersMain():
         cmd.show('ribbon')                                
         cmd.color(self.polarColor)
         
-        cmd.do('select resn leu')
-        cmd.do('color ' + self.nonpolarColor + ', sele')
-        cmd.do('select resn ala')
-        cmd.do('color ' + self.nonpolarColor + ', sele')
-        cmd.do('select resn ile')
-        cmd.do('color ' + self.nonpolarColor + ', sele')
-        cmd.do('select resn pro')
-        cmd.do('color ' + self.nonpolarColor + ', sele')
-        cmd.do('select resn val')
-        cmd.do('color ' + self.nonpolarColor + ', sele')
-        cmd.do('select resn met')
-        cmd.do('color ' + self.nonpolarColor + ', sele')
-        cmd.do('select resn gly')
-        cmd.do('color ' + self.nonpolarColor + ', sele')
-        cmd.do('select resn cys')
-        cmd.do('color ' + self.nonpolarColor + ', sele') 
+        cmd.select('sele', "resn leu")
+        cmd.color(self.nonpolarColor, 'sele')
+        
+        cmd.select('sele', "resn ala")
+        cmd.color(self.nonpolarColor, 'sele')
+        
+        cmd.select('sele', "resn ile")
+        cmd.color(self.nonpolarColor, 'sele')
+        
+        cmd.select('sele', "resn pro")
+        cmd.color(self.nonpolarColor, 'sele')
+        
+        cmd.select('sele', "resn val")
+        cmd.color(self.nonpolarColor, 'sele')
+        
+        cmd.select('sele', "resn gly")
+        cmd.color(self.nonpolarColor, 'sele')
+        
+        cmd.select('sele', "resn cys")
+        cmd.color(self.nonpolarColor, 'sele')
+        
+        
+        
+        #cmd.do('select resn leu')
+        #cmd.do('color ' + self.nonpolarColor + ', sele')
+        #cmd.do('select resn ala')
+        #cmd.do('color ' + self.nonpolarColor + ', sele')
+        #cmd.do('select resn ile')
+        #cmd.do('color ' + self.nonpolarColor + ', sele')
+        #cmd.do('select resn pro')
+        #cmd.do('color ' + self.nonpolarColor + ', sele')
+        #cmd.do('select resn val')
+        #cmd.do('color ' + self.nonpolarColor + ', sele')
+        #cmd.do('select resn met')
+        #cmd.do('color ' + self.nonpolarColor + ', sele')
+        #cmd.do('select resn gly')
+        #cmd.do('color ' + self.nonpolarColor + ', sele')
+        #cmd.do('select resn cys')
+        #cmd.do('color ' + self.nonpolarColor + ', sele') 
    
    
     

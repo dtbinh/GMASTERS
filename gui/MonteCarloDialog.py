@@ -97,7 +97,9 @@ class MonteCarloDialog:
         self.dialog  = self.builder.get_object('dialog1')
         
         self.FileChooserWindow = FileChooserWindow()
-        
+        self.builder.get_object('checkbutton3').set_sensitive(False) #pdb real
+        self.builder.get_object('checkbutton4').set_sensitive(False) # plot graphs
+
         #---------------------------------------------------------------------#
         
     
@@ -307,20 +309,36 @@ class MonteCarloDialog:
                 # ---------- adicionar aqui  tudo que  sera gerado de arquivos --------- #
                 try:
                     
-                    _parameters = LogFileParse (os.path.join(self.folder,title+'-current.pdb'))
-                    fromParametersToFile(_parameters, self.folder, Job +'_MonteCarlo.log') 
+                    #--------------------------------------------------Output log graphs----------------------------------------------------#
+                    _parameters = LogFileParse (os.path.join(self.folder,title+'-current.pdb'))                                             #
+                    fromParametersToFile(_parameters, self.folder, Job +'_MonteCarlo.log')                                                  #
+                                                                                                                                            #
+                    self.Session.projects[self.Session.ActivedProject]['Jobs'][Job]['Energy'] = _parameters['lowerEnergy']                  #
+                    self.Session.projects[self.Session.ActivedProject]['Jobs'][Job]['LowestEnergyModel']= _parameters['LowestEnergyModel']  #
+                    self.Session.AddJobHistoryToTreeview()                                                                                  #
+                    #-----------------------------------------------------------------------------------------------------------------------#
                     
-                    self.Session.projects[self.Session.ActivedProject]['Jobs'][Job]['Energy'] = _parameters['lowerEnergy']
-                    self.Session.projects[self.Session.ActivedProject]['Jobs'][Job]['LowestEnergyModel']= _parameters['LowestEnergyModel']
-                    #print self.Session.projects[self.Session.ActivedProject]['Jobs'][Job]['Energy']
-                    #self.Session.projects[self.Session.ActivedProject]['Jobs'][Job]['Energy'] = _parameters['lowerEnergyModel']
                     
-                    self.Session.AddJobHistoryToTreeview()
+                    #--------------------------PyMOL autoupdate-------------------------------------#
+                    if self.builder.get_object('checkbutton5').get_active():                        #
+                        self.Session.LoadFileInPyMOL(os.path.join(self.folder,title+'-current.pdb'))#
+                    else:                                                                           #
+                        pass                                                                        #
+                    #-------------------------------------------------------------------------------#
                     
-                    os.rename(
-                             os.path.join(self.folder,title+'-current.pdb'),
-                             os.path.join(self.folder,title+'_step_' + str(step))
-                             )
+                    
+                    #---------------------Trajectory in separate frames------------------#
+                    if self.builder.get_object('checkbutton2').get_active():             #
+                        os.rename(                                                       #
+                                 os.path.join(self.folder,title+'-current.pdb'),         #
+                                 os.path.join(self.folder,title+'_step_' + str(step))    #
+                                 )                                                       #
+                    else:                                                                #
+                        os.remove(os.path.join(self.folder,title+'-current.pdb'))        #
+                    #--------------------------------------------------------------------#
+                    
+                    
+                    
                     step += 1
                     
                 except:
@@ -343,7 +361,7 @@ class MonteCarloDialog:
         """ Function doc """
         model = self.builder.get_object('liststore1')
         #model = liststore
-
+        model.clear()
         for i in self.InputFiles:
             data = [self.InputFiles[i]["_type"], self.InputFiles[i]["format"], i]
             model.append(data)
@@ -444,6 +462,7 @@ class MonteCarloDialog:
         print 'Add new files'
         fileout            = self.FileChooserWindow.GetFileName(self.builder)
         FileType, DataType = GetFileType(fileout)
+        
         print fileout, FileType, DataType
         self.InputFiles[fileout] = {"_type":DataType, "format":FileType}
         self.addDataToTreeview()

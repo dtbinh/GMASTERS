@@ -23,7 +23,6 @@
                 <property name="visible">True</property>
                 <property name="can_focus">True</property>
                 <property name="receives_default">True</property>
-                <property name="use_action_appearance">False</property>
               </object>
               <packing>
                 <property name="expand">False</property>
@@ -37,7 +36,6 @@
                 <property name="visible">True</property>
                 <property name="can_focus">True</property>
                 <property name="receives_default">True</property>
-                <property name="use_action_appearance">False</property>
                 <signal name="clicked" handler="on_button_RunMCSimulation_clicked" swapped="no"/>
               </object>
               <packing>
@@ -225,7 +223,6 @@
                                                 <property name="visible">True</property>
                                                 <property name="can_focus">True</property>
                                                 <property name="receives_default">True</property>
-                                                <property name="use_action_appearance">False</property>
                                                 <signal name="clicked" handler="on_button_addFiles_clicked" swapped="no"/>
                                                 <child>
                                                   <object class="GtkHBox" id="hbox2">
@@ -269,7 +266,6 @@
                                                 <property name="visible">True</property>
                                                 <property name="can_focus">True</property>
                                                 <property name="receives_default">True</property>
-                                                <property name="use_action_appearance">False</property>
                                                 <signal name="clicked" handler="on_button_removeFile_clicked" swapped="no"/>
                                                 <child>
                                                   <object class="GtkHBox" id="hbox3">
@@ -579,7 +575,6 @@
                                                 <property name="visible">True</property>
                                                 <property name="can_focus">True</property>
                                                 <property name="receives_default">False</property>
-                                                <property name="use_action_appearance">False</property>
                                                 <property name="draw_indicator">True</property>
                                               </object>
                                               <packing>
@@ -650,7 +645,7 @@
                                     <property name="visible">True</property>
                                     <property name="can_focus">True</property>
                                     <property name="receives_default">False</property>
-                                    <property name="use_action_appearance">False</property>
+                                    <property name="active">True</property>
                                     <property name="draw_indicator">True</property>
                                   </object>
                                   <packing>
@@ -665,7 +660,6 @@
                                     <property name="visible">True</property>
                                     <property name="can_focus">True</property>
                                     <property name="receives_default">False</property>
-                                    <property name="use_action_appearance">False</property>
                                     <property name="draw_indicator">True</property>
                                   </object>
                                   <packing>
@@ -680,7 +674,7 @@
                                     <property name="visible">True</property>
                                     <property name="can_focus">True</property>
                                     <property name="receives_default">False</property>
-                                    <property name="use_action_appearance">False</property>
+                                    <property name="active">True</property>
                                     <property name="draw_indicator">True</property>
                                   </object>
                                   <packing>
@@ -695,7 +689,7 @@
                                     <property name="visible">True</property>
                                     <property name="can_focus">True</property>
                                     <property name="receives_default">False</property>
-                                    <property name="use_action_appearance">False</property>
+                                    <property name="active">True</property>
                                     <property name="draw_indicator">True</property>
                                   </object>
                                   <packing>
