@@ -49,7 +49,7 @@ except:
 from modules.LogFileParse  import LogFileParse
 from modules.LogFileParse  import fromParametersToFile
 from gui.FileChooserWindow import FileChooserWindow 
-
+from pymol import cmd
 
 
 FileTypeDic = {
@@ -99,7 +99,8 @@ class MonteCarloDialog:
         self.FileChooserWindow = FileChooserWindow()
         self.builder.get_object('checkbutton3').set_sensitive(False) #pdb real
         self.builder.get_object('checkbutton4').set_sensitive(False) # plot graphs
-
+        self.builder.get_object('checkbutton1').set_sensitive(False)
+        self.builder.get_object('vbox6').hide()
         #---------------------------------------------------------------------#
         
     
@@ -122,7 +123,8 @@ class MonteCarloDialog:
                       }
               }
 
-
+        
+        
 
         if ReRunJOB == None:
             self.InputFiles = {} #None#{
@@ -135,7 +137,11 @@ class MonteCarloDialog:
             self.InputFiles = None #{
                              #'input_coords': self.Session.projects[self.Session.ActivedProject]['Jobs']['0']['Output']
                              #}
-                              
+
+
+
+
+
     #--------------Dialog methods----------------#
     def ImportCellValorsFromProject (self):
         """ Function doc """
@@ -322,20 +328,21 @@ class MonteCarloDialog:
                     #--------------------------PyMOL autoupdate-------------------------------------#
                     if self.builder.get_object('checkbutton5').get_active():                        #
                         self.Session.LoadFileInPyMOL(os.path.join(self.folder,title+'-current.pdb'))#
+                        cmd.frame(step)
                     else:                                                                           #
                         pass                                                                        #
                     #-------------------------------------------------------------------------------#
                     
                     
-                    #---------------------Trajectory in separate frames------------------#
-                    if self.builder.get_object('checkbutton2').get_active():             #
-                        os.rename(                                                       #
-                                 os.path.join(self.folder,title+'-current.pdb'),         #
-                                 os.path.join(self.folder,title+'_step_' + str(step))    #
-                                 )                                                       #
-                    else:                                                                #
-                        os.remove(os.path.join(self.folder,title+'-current.pdb'))        #
-                    #--------------------------------------------------------------------#
+                    #---------------------Trajectory in separate frames------------------------#
+                    if self.builder.get_object('checkbutton2').get_active():                   #
+                        os.rename(                                                             #
+                                 os.path.join(self.folder,title+'-current.pdb'),               #
+                                 os.path.join(self.folder,title+'_step_' + str(step) + ".pdb") #
+                                 )                                                             #
+                    else:                                                                      #
+                        os.remove(os.path.join(self.folder,title+'-current.pdb'))              #
+                    #--------------------------------------------------------------------------#
                     
                     
                     
@@ -395,7 +402,8 @@ class MonteCarloDialog:
 
         
         self.InputFiles = {
-                           'input_coords': self.Session.projects[self.Session.ActivedProject]['Jobs']['0']['Output']
+                           'input_coords': 	self.builder.get_object("filechooserbutton1").get_filename()
+
                            }        
         
         InputFiles       =  {

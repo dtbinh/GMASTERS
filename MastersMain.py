@@ -419,6 +419,10 @@ class MastersMain():
     def on_toolbutton_MonteCarlo_clicked (self, button):
         """ Function doc """
         self.MonteCarloDialog.ImportCellValorsFromProject()
+        self.MonteCarloDialog.input_coords = self.projects[self.ActivedProject]['Jobs']['0']['Output']
+        self.MonteCarloDialog.builder.get_object('filechooserbutton1').set_filename(self.MonteCarloDialog.input_coords)
+        #		data_path  	 = self.builder.get_object("01_main_window_filechooserbutton_datapath").get_filename()
+
         self.MonteCarloDialog.dialog.run()
         self.MonteCarloDialog.dialog.hide()
     
